@@ -1,20 +1,26 @@
 import Phaser from 'phaser'
 
+import TextureKeys from "/consts/Texturekeys";
+import SceneKeys from "/consts/SceneKeys";
+import AnimationKeys from "/consts/AnimationKeys";
+
 export default class Preloader extends Phaser.Scene
 {
 	constructor()
 	{
-		super('preloader');
+		super(SceneKeys.Preloader);
 	}
 
 	preload()
 	{
 		//load background
-		this.load.image('background', 'house/bg_repeat_340x640.png');
+		this.load.image(
+		TextureKeys.Background, //enum 
+		'house/bg_repeat_340x640.png');//navigation starts in public folder
 
 		//load as an atlas
 		this.load.atlas(
-			"rocket-mouse",
+			TextureKeys.RocketMouse, //enum
 			"characters/rocket-mouse.png",
 			"characters/rocket-mouse.json",
 		);
@@ -25,7 +31,7 @@ export default class Preloader extends Phaser.Scene
 	{
 		//[]Animations
 		this.anims.create({
-			key: "rocket-mouse-run",//name of animation
+			key: AnimationKeys.RocketMouseRun,//name of animation
 			//helper to generate frames
 			frames: this.anims.generateFrameNames("rocket-mouse", {
 				start: 1,
@@ -38,7 +44,7 @@ export default class Preloader extends Phaser.Scene
 			repeat: -1, //repeat forever
 		});
 
-		this.scene.start('game');
+		this.scene.start(SceneKeys.Game);
 	}
 
 
