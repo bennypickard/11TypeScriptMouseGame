@@ -2,8 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\src",
+    "\\src\\consts",
     "\\src\\scenes"
   ],
-  "SelectedNode": "\\src\\scenes\\Preloader.ts",
+  "SelectedNode": "\\src\\scenes\\Game.ts",
   "PreviewInSolutionExplorer": false
 }
