@@ -25,6 +25,17 @@ export default class Preloader extends Phaser.Scene
 			"characters/rocket-mouse.json",
 		);
 
+		//mouse hole
+		this.load.image(
+			TextureKeys.MouseHole,
+			'house/object_mousehole.png',
+		);
+
+		//windows
+		this.load.image(TextureKeys.Window1, "house/object_window1.png");
+		this.load.image(TextureKeys.Window2, "house/object_window2.png");
+
+
 	}
 
 	create()

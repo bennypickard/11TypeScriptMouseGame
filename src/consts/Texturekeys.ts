@@ -5,7 +5,11 @@ Enums are encoded keys that coorispond to specific things.
 Each is specified to a number. Helps with legibility
 */
 	Background = "background",
+	MouseHole = "mouse-hole",
 	RocketMouse = "rocket-mouse",
+	Window1 = "window-1",
+	Window2 = "window-2",
+	
 }
 
 export default TextureKeys;
