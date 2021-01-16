@@ -15,7 +15,8 @@ export default class Game extends Phaser.Scene
 	private mouseHole!: Phaser.GameObjects.Image;
 	private window1!: Phaser.GameObjects.Image;
 	private window2!: Phaser.GameObjects.Image;
-
+	private bookcase1!: Phaser.GameObjects.Image;
+	private bookcase2!: Phaser.GameObjects.Image;
 
 	constructor()
 	{
@@ -69,6 +70,23 @@ export default class Game extends Phaser.Scene
 			TextureKeys.Window2
 		)
 		
+		//[]BOOKCASEES
+		this.bookcase1 = this.add.image(
+			Phaser.Math.Between(2200,2700),
+			580,
+			TextureKeys.Bookcase1
+		)
+		.setOrigin(0.5, 1);
+
+		this.bookcase2 = this.add.image(
+			Phaser.Math.Between(2900,3400),
+			580,
+			TextureKeys.Bookcase2
+		)
+		.setOrigin(.5, 1);
+
+
+
 		//[]SPRITE
 		/*Basic Sprite
 		this.add.sprite(
@@ -116,6 +134,7 @@ export default class Game extends Phaser.Scene
 		//[]MOVE DECORATIVE SPRITES
 		this.wrapMouseHole();
 		this.wrapWindows();
+		this.wrapBookcases();
 		//[]SCROLL BACKGROUND
 		this.background.setTilePosition(this.cameras.main.scrollX);
 	}
@@ -169,9 +188,32 @@ export default class Game extends Phaser.Scene
 				this.window1.x + width + 800
 			)
 		}
+	}
 
+	private wrapBookcases()
+	{/*This function runs continuously. It is called from the update function
+	This function detects if either bookcase is offscreen
+	Too the left and then replaces it to the right if it is.
+	*/
+		const scrollX = this.cameras.main.scrollX;
+		const rightEdge = scrollX + this.scale.width;
 
+		let width = this.bookcase1.width * 2;
+		if (this.bookcase1.x + width < scrollX)
+		{//If bookcase left of camera, replace bookcase
+			this.bookcase1.x = Phaser.Math.Between(
+				rightEdge + width,
+				rightEdge + width + 800
+			)
+		}
 
-
+		width = this.bookcase2.width
+		if (this.bookcase2.x + width < scrollX)
+		{
+			this.bookcase2.x = Phaser.Math.Between(
+				this.bookcase1.x + width,
+				this.bookcase1.x + width, + 800
+			)
+		}
 	}
 }
