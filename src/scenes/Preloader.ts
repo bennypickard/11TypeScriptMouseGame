@@ -44,10 +44,11 @@ export default class Preloader extends Phaser.Scene
 	create()
 	{
 		//[]Animations
+		//Run
 		this.anims.create({
 			key: AnimationKeys.RocketMouseRun,//name of animation
 			//helper to generate frames
-			frames: this.anims.generateFrameNames("rocket-mouse", {
+			frames: this.anims.generateFrameNames(TextureKeys.RocketMouse, {
 				start: 1,
 				end: 4,
 				prefix: "rocketmouse_run", 
@@ -57,6 +58,22 @@ export default class Preloader extends Phaser.Scene
 			frameRate: 10,
 			repeat: -1, //repeat forever
 		});
+		//Fire
+		this.anims.create({
+			key: AnimationKeys.RocketFlamesOn,//name of animation
+			//helper to generate frames
+			frames: this.anims.generateFrameNames(TextureKeys.RocketMouse,
+			{
+				start: 1,
+				end: 2,
+				prefix: "flame", 
+				suffix:".png"
+			}),
+			frameRate: 10,
+			repeat: -1, //repeat forever
+		});
+
+
 
 		this.scene.start(SceneKeys.Game);
 	}

@@ -3,6 +3,7 @@ import Phaser from 'phaser'
 import TextureKeys from "/consts/Texturekeys";
 import SceneKeys from "/consts/SceneKeys";
 import AnimationKeys from "/consts/AnimationKeys";
+import RocketMouse from "../game/RocketMouse";
 
 export default class Game extends Phaser.Scene
 {
@@ -96,7 +97,7 @@ export default class Game extends Phaser.Scene
 			"rocketmouse_fly01.png",//name of the frame in atlas
 		)
 		*/
-		//PhysicsSprite
+		/*PhysicsSprite
 		const mouse = this.physics.add.sprite(
 			width * .5,//midway
 			height -30,//almost the bottom
@@ -105,6 +106,10 @@ export default class Game extends Phaser.Scene
 		)
 		.setOrigin(.5, 1)//set origin to feet
 		.play(AnimationKeys.RocketMouseRun);
+		*/
+		const mouse = new RocketMouse(this, width * 0.5, height - 30)
+		this.add.existing(mouse);//adds it to the scene
+
 
 		//[]COLLISIONS
 		const body = mouse.body as Phaser.Physics.Arcade.Body
