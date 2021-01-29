@@ -3,8 +3,9 @@
     "",
     "\\src",
     "\\src\\consts",
+    "\\src\\game",
     "\\src\\scenes"
   ],
-  "SelectedNode": "\\src\\scenes\\Game.ts",
+  "SelectedNode": "\\src\\game\\RocketMouse.ts",
   "PreviewInSolutionExplorer": false
 }
