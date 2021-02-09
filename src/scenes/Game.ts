@@ -107,8 +107,8 @@ export default class Game extends Phaser.Scene
 		.setOrigin(.5, 1)//set origin to feet
 		.play(AnimationKeys.RocketMouseRun);
 		*/
-		const mouse = new RocketMouse(this, width * 0.5, height - 30)
-		this.add.existing(mouse);//adds it to the scene
+		const mouse = new RocketMouse(this, width * 0.5, height - 30)//generate a Rocketmouse Object
+		this.add.existing(mouse);//Add the new object to the scene.
 
 
 		//[]COLLISIONS

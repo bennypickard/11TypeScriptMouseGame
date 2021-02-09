@@ -13,19 +13,19 @@ export default class RocketMouse extends Phaser.GameObjects.Container
 	constructor(scene: Phaser.Scene, x: number, y: number)
 	{
 		super(scene, x, y)
-		//[]MOUSE
+		//[]MOUSE SPRITE
 		//create the mouse sprite
 		this.mouse = scene.add.sprite(0,0, TextureKeys.RocketMouse)
 			.setOrigin(0.5, 1)
 			.play(AnimationKeys.RocketMouseRun);
 
-		//add a physics body
+		//[]PHYSICS BODY
 		scene.physics.add.existing(this);
 		const body = this.body as Phaser.Physics.Arcade.Body 
 		body.setSize(this.mouse.width, this.mouse.height)
 		body.setOffset(this.mouse.width * -0.5, -this.mouse.height)
 
-		//[]FIRE
+		//[]FIRE SPRITE
 		this.flames = scene.add.sprite(-63,-15,TextureKeys.RocketMouse)
 			.play(AnimationKeys.RocketFlamesOn)
 		//start flames off
@@ -53,13 +53,16 @@ export default class RocketMouse extends Phaser.GameObjects.Container
 	preUpdate()//could use Update instead
 	{
 		const body = this.body as Phaser.Physics.Arcade.Body;
-
+		
 		//check if Space is down
 		if(this.cursors.space?.isDown)
 		{
 			//set y acceleration to -600
 			body.setAccelerationY(-600);
 			this.enableJetpack(true);
+			//Animate
+			console.log("this far");
+			this.mouse.play(AnimationKeys.RocketMouseFly, true);
 		}
 		else
 		{
@@ -67,6 +70,19 @@ export default class RocketMouse extends Phaser.GameObjects.Container
 			body.setAccelerationY(0);
 			this.enableJetpack(false);
 		}
+
+		//check if touching ground
+		if(body.blocked.down)
+		{
+			//play run animation
+			this.mouse.play(AnimationKeys.RocketMouseRun, true)
+		}
+		else if (body.velocity.y > 0)
+		{//Else if not touching grounds and falling play falling animation.
+			this.mouse.play(AnimationKeys.RocketMouseFall, true)
+		}
+		
+
 
 
 
