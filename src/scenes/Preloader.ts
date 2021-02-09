@@ -58,6 +58,22 @@ export default class Preloader extends Phaser.Scene
 			frameRate: 10,
 			repeat: -1, //repeat forever
 		});
+		//Fall
+		this.anims.create({
+			key: AnimationKeys.RocketMouseFall,
+			frames: [{
+				key: TextureKeys.RocketMouse,
+				frame: 'rocketmouse_fall01.png'
+			}]
+		});
+		//Fly
+		this.anims.create({
+			key: AnimationKeys.RocketMouseFly,
+			frames: [{
+				key: TextureKeys.RocketMouse,
+				frame: 'rocketmouse_fly01.png'
+			}]
+		})
 		//Fire
 		this.anims.create({
 			key: AnimationKeys.RocketFlamesOn,//name of animation
