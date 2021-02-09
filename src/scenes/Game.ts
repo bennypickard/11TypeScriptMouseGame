@@ -4,6 +4,7 @@ import TextureKeys from "/consts/Texturekeys";
 import SceneKeys from "/consts/SceneKeys";
 import AnimationKeys from "/consts/AnimationKeys";
 import RocketMouse from "../game/RocketMouse";
+import LaserObstacle from "../game/LaserObstacle"
 
 export default class Game extends Phaser.Scene
 {
@@ -86,7 +87,9 @@ export default class Game extends Phaser.Scene
 		)
 		.setOrigin(.5, 1);
 
-
+		//[]LASERS
+		const laserObstacle = new LaserObstacle(this, 900,100)
+		this.add.existing(laserObstacle);
 
 		//[]SPRITE
 		/*Basic Sprite
