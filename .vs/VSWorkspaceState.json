@@ -1,11 +1,13 @@
 {
   "ExpandedNodes": [
     "",
+    "\\public",
+    "\\public\\characters",
     "\\src",
     "\\src\\consts",
     "\\src\\game",
     "\\src\\scenes"
   ],
-  "SelectedNode": "\\src\\game\\RocketMouse.ts",
+  "SelectedNode": "\\src\\scenes\\Preloader.ts",
   "PreviewInSolutionExplorer": false
 }

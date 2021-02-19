@@ -19,6 +19,8 @@ export default class Game extends Phaser.Scene
 	private window2!: Phaser.GameObjects.Image;
 	private bookcase1!: Phaser.GameObjects.Image;
 	private bookcase2!: Phaser.GameObjects.Image;
+	private laserObstacle!: laserObstacle;
+
 
 	constructor()
 	{
@@ -88,8 +90,8 @@ export default class Game extends Phaser.Scene
 		.setOrigin(.5, 1);
 
 		//[]LASERS
-		const laserObstacle = new LaserObstacle(this, 900,100)
-		this.add.existing(laserObstacle);
+		this.laserObstacle = new LaserObstacle(this, 900,100)
+		this.add.existing(this.laserObstacle);
 
 		//[]SPRITE
 		/*Basic Sprite
@@ -145,6 +147,10 @@ export default class Game extends Phaser.Scene
 		this.wrapBookcases();
 		//[]SCROLL BACKGROUND
 		this.background.setTilePosition(this.cameras.main.scrollX);
+		//[]LOOP LASER
+		this.wrapLaserObstacle();
+		console.log(this.laserObstacle.x);
+
 	}
 	private wrapMouseHole()
 	{/*This function runs continuously and is called from Update
@@ -222,6 +228,40 @@ export default class Game extends Phaser.Scene
 				this.bookcase1.x + width,
 				this.bookcase1.x + width, + 800
 			)
+		}
+	}
+
+	private wrapLaserObstacle()
+	{
+		//define constants
+		const scrollX = this.cameras.main.scrollX;
+		const rightEdge = scrollX + this.scale.width;
+		//body var with specific physics body Type
+		const body = this.laserObstacle.body as Phaser.Physics.Arcade.StaticBody
+		
+		const width = this.laserObstacle.width;
+
+
+		if(this.laserObstacle.x + width < scrollX)
+		{//if out of bounds
+			//move its position
+			this.laserObstacle.x = Phaser.Math.Between(
+				rightEdge + width,
+				rightEdge + width + 1000
+			)
+
+		//randomize height also.
+		this.laserObstacle.y = Phaser.Math.Between(0, 300);
+
+
+		//set physics body position
+		//ad body.offset.x to account for x offset
+		body.position.x = this.laserObstacle.x + body.offset.x
+		body.position.y = this.laserObstacle.y
+
+
+
+
 		}
 	}
 }
